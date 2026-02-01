@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/egschipp/gsplayer/compare/v1.2.3...v1.3.0) (2026-02-01)
+
+
+### Features
+
+* use GitHub release tag for UI version ([d9aafde](https://github.com/egschipp/gsplayer/commit/d9aafde1d01156b94e95a41dc407be0b4ed79653))
+
 ## [1.2.3](https://github.com/egschipp/gsplayer/compare/v1.2.2...v1.2.3) (2026-02-01)
 
 
