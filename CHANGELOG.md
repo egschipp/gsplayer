@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/egschipp/gsplayer/compare/v1.3.2...v1.3.3) (2026-02-01)
+
+
+### Bug Fixes
+
+* ensure node available for deploy build ([87e84ad](https://github.com/egschipp/gsplayer/commit/87e84ad84e194205b2d2432b15250dd520c104dc))
+
 ## [1.3.2](https://github.com/egschipp/gsplayer/compare/v1.3.1...v1.3.2) (2026-02-01)
 
 
