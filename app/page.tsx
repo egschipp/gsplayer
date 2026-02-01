@@ -1,11 +1,15 @@
+import MvpClient from './ui/mvp-client';
+
 export default function HomePage() {
-  // Minimalistische pagina om Next build te laten slagen; UI valt buiten scope.
   const version = process.env.NEXT_PUBLIC_APP_VERSION ?? 'dev';
 
   return (
-    <main>
-      Georgies Spotify Player
-      <div style={{ fontSize: 12, opacity: 0.6, marginTop: 8 }}>v{version}</div>
+    <main style={{ padding: 24, fontFamily: 'system-ui, sans-serif' }}>
+      <header style={{ marginBottom: 24 }}>
+        <h1 style={{ margin: 0 }}>Georgies Spotify Player</h1>
+        <div style={{ fontSize: 12, opacity: 0.6, marginTop: 6 }}>v{version}</div>
+      </header>
+      <MvpClient />
     </main>
   );
 }
