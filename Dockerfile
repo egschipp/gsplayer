@@ -1,10 +1,11 @@
+# syntax=docker/dockerfile:1.7
 FROM node:24-alpine AS base
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS deps
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm npm ci
 
 FROM base AS builder
 ARG NEXT_PUBLIC_APP_VERSION
