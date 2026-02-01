@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/egschipp/gsplayer/compare/v1.2.0...v1.2.1) (2026-02-01)
+
+
+### Bug Fixes
+
+* move Spotify auth routes under /api ([4df8dbd](https://github.com/egschipp/gsplayer/commit/4df8dbd743048b5da434d4d32d1f5ceeb6e500af))
+
 # [1.2.0](https://github.com/egschipp/gsplayer/compare/v1.1.0...v1.2.0) (2026-02-01)
 
 
