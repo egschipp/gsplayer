@@ -11,20 +11,28 @@ const getCookieValue = (cookieHeader: string, name: string) => {
   return entry ? entry.split('=')[1] : null;
 };
 
+const getBaseUrl = (request: Request) => {
+  const forwardedHost = request.headers.get('x-forwarded-host');
+  const host = forwardedHost ?? request.headers.get('host') ?? 'localhost:3000';
+  const forwardedProto = request.headers.get('x-forwarded-proto') ?? 'https';
+  return `${forwardedProto}://${host}`;
+};
+
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
+  const baseUrl = getBaseUrl(request);
 
   if (!code) {
-    return NextResponse.redirect(new URL('/?error=missing_code', url));
+    return NextResponse.redirect(new URL('/?error=missing_code', baseUrl));
   }
 
   const cookies = request.headers.get('cookie') ?? '';
   const stateCookie = getCookieValue(cookies, getStateCookieName());
 
   if (!stateCookie || !state || stateCookie !== state) {
-    return NextResponse.redirect(new URL('/?error=state_mismatch', url));
+    return NextResponse.redirect(new URL('/?error=state_mismatch', baseUrl));
   }
 
   const token = await exchangeCodeForToken(code);
@@ -36,7 +44,7 @@ export async function GET(request: Request) {
     expiresAt,
   });
 
-  const response = NextResponse.redirect(new URL('/', url));
+  const response = NextResponse.redirect(new URL('/', baseUrl));
   response.cookies.set(getSessionCookieName(), payload, {
     httpOnly: true,
     sameSite: 'lax',
