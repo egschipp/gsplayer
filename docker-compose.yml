@@ -1,0 +1,8 @@
+services:
+  gsplayer:
+    image: ${GSPLAYER_IMAGE}
+    container_name: gsplayer
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${PORT:-3000}:3000"
