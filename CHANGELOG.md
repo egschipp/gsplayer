@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/egschipp/gsplayer/compare/v1.3.1...v1.3.2) (2026-02-01)
+
+
+### Performance Improvements
+
+* speed up deploy pipeline ([a63f7de](https://github.com/egschipp/gsplayer/commit/a63f7de7e5f49ec39d5f0cfb3d38573ce525e2d4))
+
 ## [1.3.1](https://github.com/egschipp/gsplayer/compare/v1.3.0...v1.3.1) (2026-02-01)
 
 
