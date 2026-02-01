@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/egschipp/gsplayer/compare/v1.3.4...v1.3.5) (2026-02-01)
+
+
+### Bug Fixes
+
+* redirect using forwarded host ([db61b11](https://github.com/egschipp/gsplayer/commit/db61b115fe992328c4c3624ebafecd45f876fd35))
+
 ## [1.3.4](https://github.com/egschipp/gsplayer/compare/v1.3.3...v1.3.4) (2026-02-01)
 
 
