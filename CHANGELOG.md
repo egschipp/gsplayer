@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/egschipp/gsplayer/compare/v1.1.0...v1.2.0) (2026-02-01)
+
+
+### Features
+
+* add Spotify login flow and now playing ([7029b3a](https://github.com/egschipp/gsplayer/commit/7029b3a6489aad6db6c89712af1b3a398330fe14))
+
 # [1.1.0](https://github.com/egschipp/gsplayer/compare/v1.0.4...v1.1.0) (2026-02-01)
 
 
