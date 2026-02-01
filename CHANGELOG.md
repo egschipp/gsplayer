@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/egschipp/gsplayer/compare/v1.0.1...v1.0.2) (2026-02-01)
+
+
+### Performance Improvements
+
+* shrink docker build context ([4296518](https://github.com/egschipp/gsplayer/commit/42965181e43bdc14f161acce33ef970289a728dd))
+
 ## [1.0.1](https://github.com/egschipp/gsplayer/compare/v1.0.0...v1.0.1) (2026-02-01)
 
 
