@@ -44,3 +44,11 @@ Optioneel (als je wilt overschrijven):
 
 
 <!-- deploy test -->
+
+## Conventional Commits (voor releases)
+
+Gebruik bij voorkeur:
+- `feat: ...` voor nieuwe functionaliteit
+- `fix: ...` voor bugfixes
+- `chore: ...` voor onderhoud
+- `feat!: ...` of `BREAKING CHANGE:` voor breaking changes
