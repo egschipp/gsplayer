@@ -68,6 +68,17 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         env:
           GSPLAYER_IMAGE: ghcr.io/${{ github.repository_owner }}/gsplayer:latest
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          CACHE_BACKEND: ${{ secrets.CACHE_BACKEND }}
+          CACHE_REDIS_URL: ${{ secrets.CACHE_REDIS_URL }}
+          CACHE_REDIS_PREFIX: ${{ secrets.CACHE_REDIS_PREFIX }}
+          PORT: ${{ secrets.PORT }}
+          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
+          METRICS_ENABLED: ${{ secrets.METRICS_ENABLED }}
+          GHCR_USER: ${{ secrets.GHCR_USER }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
@@ -83,8 +94,8 @@ jobs:
             PORT=${PORT:-3000}
             LOG_LEVEL=${LOG_LEVEL:-info}
             METRICS_ENABLED=${METRICS_ENABLED:-true}
-            SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
-            SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+            SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID:-}
+            SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET:-}
             CACHE_BACKEND=${CACHE_BACKEND:-memory}
             CACHE_REDIS_URL=${CACHE_REDIS_URL:-}
             CACHE_REDIS_PREFIX=${CACHE_REDIS_PREFIX:-gsplayer:spotify:}
