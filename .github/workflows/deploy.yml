@@ -44,7 +44,7 @@ jobs:
 
       - name: Build image
         run: |
-          APP_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || node -p \"require('./package.json').version\")
+          APP_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || node -p "require('./package.json').version")
           docker build --build-arg NEXT_PUBLIC_APP_VERSION=$APP_VERSION -t ghcr.io/${{ github.repository_owner }}/gsplayer:latest -t ghcr.io/${{ github.repository_owner }}/gsplayer:${{ github.sha }} -f Dockerfile .
 
       - name: Push image
