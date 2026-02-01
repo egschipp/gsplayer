@@ -106,6 +106,28 @@ jobs:
             set -euo pipefail
             DEPLOY_PATH="${DEPLOY_PATH:-/opt/gsplayer}"
             mkdir -p "$DEPLOY_PATH"
+            if [ -z "${APP_ENCRYPTION_KEY:-}" ]; then
+              echo "APP_ENCRYPTION_KEY ontbreekt"
+              exit 1
+            fi
+            if [ "${APP_ENCRYPTION_KEY}" = "openssl rand -base64 32" ]; then
+              echo "APP_ENCRYPTION_KEY is ongeldig (voorbeeldtekst)"
+              exit 1
+            fi
+            KEY_LEN=$(echo -n "${APP_ENCRYPTION_KEY}" | python3 - <<'PY'
+import base64, sys
+v = sys.stdin.read()
+try:
+    decoded = base64.b64decode(v, validate=True)
+    print(len(decoded))
+except Exception:
+    print(0)
+PY
+)
+            if [ "$KEY_LEN" != "32" ]; then
+              echo "APP_ENCRYPTION_KEY moet 32 bytes base64 zijn"
+              exit 1
+            fi
             cat > "$DEPLOY_PATH/.env" <<EOF
             NODE_ENV=production
             PORT=${PORT:-3000}
