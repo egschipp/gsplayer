@@ -104,7 +104,15 @@ class RedisCache implements CacheStore {
   private readonly client;
   private readonly prefix: string;
 
-  constructor(client: { get: (key: string) => Promise<string | null>; set: (key: string, value: string, opts?: { EX: number }) => Promise<unknown>; del: (key: string) => Promise<unknown>; scan: (cursor: string, ...args: string[]) => Promise<[string, string[]]>; }, prefix: string) {
+  constructor(
+    client: {
+      get: (key: string) => Promise<string | null>;
+      set: (key: string, value: string, opts?: { EX: number }) => Promise<unknown>;
+      del: (key: string) => Promise<unknown>;
+      scan: (cursor: number, options?: { MATCH?: string; COUNT?: number }) => Promise<[number, string[]]>;
+    },
+    prefix: string,
+  ) {
     this.client = client;
     this.prefix = prefix;
   }
@@ -148,14 +156,14 @@ class RedisCache implements CacheStore {
 
   async clearByPrefix(prefix: string): Promise<void> {
     const match = `${this.prefix}${prefix}*`;
-    let cursor = '0';
+    let cursor = 0;
     do {
-      const [nextCursor, keys] = await this.client.scan(cursor, 'MATCH', match, 'COUNT', '100');
+      const [nextCursor, keys] = await this.client.scan(cursor, { MATCH: match, COUNT: 100 });
       cursor = nextCursor;
       if (keys.length > 0) {
         await Promise.all(keys.map((key) => this.client.del(key)));
       }
-    } while (cursor !== '0');
+    } while (cursor !== 0);
   }
 }
 
@@ -171,7 +179,16 @@ export const getCacheStore = async (): Promise<CacheStore> => {
       if (!client.isOpen) {
         await client.connect();
       }
-      return new RedisCache(client, config.cache.redis.keyPrefix);
+      const adapter = {
+        get: (key: string) => client.get(key),
+        set: (key: string, value: string, opts?: { EX: number }) => client.set(key, value, opts),
+        del: (key: string) => client.del(key),
+        scan: async (cursor: number, options?: { MATCH?: string; COUNT?: number }) => {
+          const result = await client.scan(cursor, options);
+          return [result.cursor, result.keys] as [number, string[]];
+        },
+      };
+      return new RedisCache(adapter, config.cache.redis.keyPrefix);
     }
     return new InMemoryCache(config.cache.memory.maxEntries);
   })();

@@ -1,4 +1,4 @@
-import { createDefaultLogger, createNoopMetrics, type Logger, type Metrics } from './logger';
+import { createDefaultLogger, createNoopMetrics, type Logger, type Metrics, type LogLevel } from './logger';
 
 const env = process.env;
 
@@ -51,7 +51,11 @@ export const config = {
     },
   },
   logging: {
-    level: env.LOG_LEVEL || 'info',
+    level: (['debug', 'info', 'warn', 'error'] as const).includes(
+      (env.LOG_LEVEL as LogLevel) ?? 'info',
+    )
+      ? (env.LOG_LEVEL as LogLevel)
+      : 'info',
   },
   metrics: {
     enabled: parseBoolEnv(env.METRICS_ENABLED, true),
