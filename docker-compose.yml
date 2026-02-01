@@ -6,3 +6,9 @@ services:
     env_file: .env
     ports:
       - "${PORT:-3000}:3000"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
