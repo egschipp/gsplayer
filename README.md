@@ -1,0 +1,2 @@
+# gsplayer
+Georgies Spotify Player
