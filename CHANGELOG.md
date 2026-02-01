@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/egschipp/gsplayer/compare/v1.0.3...v1.0.4) (2026-02-01)
+
+
+### Bug Fixes
+
+* use docker-compose on deploy host ([f96ec7d](https://github.com/egschipp/gsplayer/commit/f96ec7dc9dc18d1926e91a52061a34bd6e096445))
+
 ## [1.0.3](https://github.com/egschipp/gsplayer/compare/v1.0.2...v1.0.3) (2026-02-01)
 
 
