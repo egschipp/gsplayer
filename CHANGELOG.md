@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/egschipp/gsplayer/compare/v1.2.1...v1.2.2) (2026-02-01)
+
+
+### Bug Fixes
+
+* stabilize lint command ([534b372](https://github.com/egschipp/gsplayer/commit/534b37231ea7c0aeca9b94c7188a25c7cae83d5f))
+
 ## [1.2.1](https://github.com/egschipp/gsplayer/compare/v1.2.0...v1.2.1) (2026-02-01)
 
 
