@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node -e \"console.log('No tests configured');\""
+    "test": "node -e \"console.log('No tests configured');\"",
+    "release": "semantic-release"
   },
   "dependencies": {
     "next": "14.2.5",
@@ -22,6 +23,10 @@
     "@types/react-dom": "18.3.0",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "9.2.6",
+    "semantic-release": "23.1.1"
   }
 }
