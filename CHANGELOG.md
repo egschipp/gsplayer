@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/egschipp/gsplayer/compare/v1.3.3...v1.3.4) (2026-02-01)
+
+
+### Bug Fixes
+
+* validate APP_ENCRYPTION_KEY in deploy ([ec37f30](https://github.com/egschipp/gsplayer/commit/ec37f303fee5ea427a4c5a363e33ba8dab75332f))
+
 ## [1.3.3](https://github.com/egschipp/gsplayer/compare/v1.3.2...v1.3.3) (2026-02-01)
 
 
