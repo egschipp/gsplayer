@@ -10,7 +10,7 @@ Stel de volgende secrets in bij **Settings → Secrets and variables → Actions
 
 - `SPOTIFY_CLIENT_ID`
 - `SPOTIFY_CLIENT_SECRET`
-- `SPOTIFY_REDIRECT_URI` (bijv. `https://www.schippers-online.nl/spotify/api/auth/spotify/callback`)
+- `SPOTIFY_REDIRECT_URI` (bijv. `https://www.schippers-online.nl/gsplayer/api/auth/spotify/callback`)
 - `APP_ENCRYPTION_KEY` (32 bytes base64, bv. output van `openssl rand -base64 32`)
 - `DEPLOY_HOST`
 - `DEPLOY_USER`

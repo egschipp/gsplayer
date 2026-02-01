@@ -117,8 +117,8 @@ export default function MvpClient() {
     <section style={{ display: 'grid', gap: 20 }}>
       <div style={{ display: 'grid', gap: 10, maxWidth: 720 }}>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <a href="/spotify/api/auth/spotify/login">Login met Spotify</a>
-          <a href="/spotify/api/auth/spotify/logout">Logout</a>
+          <a href="/api/auth/spotify/login">Login met Spotify</a>
+          <a href="/api/auth/spotify/logout">Logout</a>
         </div>
         <label style={{ display: 'grid', gap: 6 }}>
           <span>User key</span>
