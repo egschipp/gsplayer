@@ -33,7 +33,6 @@ const msToMin = (ms?: number) => {
 };
 
 export default function MvpClient() {
-  const [accessToken, setAccessToken] = useState('');
   const [userKey, setUserKey] = useState('demo-user');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,6 +40,7 @@ export default function MvpClient() {
   const [playlists, setPlaylists] = useState<PlaylistItem[]>([]);
   const [tracks, setTracks] = useState<TrackItem[]>([]);
   const [artists, setArtists] = useState<ArtistItem[]>([]);
+  const [nowPlaying, setNowPlaying] = useState<TrackItem | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [searchType, setSearchType] = useState<'track' | 'artist' | 'playlist'>('track');
@@ -54,7 +54,7 @@ export default function MvpClient() {
     const response = await fetch('/api/spotify', {
       method: 'POST',
       headers,
-      body: JSON.stringify({ accessToken, userKey, ...payload }),
+      body: JSON.stringify({ userKey, ...payload }),
     });
     const body = await response.json();
     if (!response.ok) {
@@ -100,19 +100,26 @@ export default function MvpClient() {
     }
   };
 
+  const loadNowPlaying = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await callApi({ action: 'now-playing' });
+      setNowPlaying(result.nowPlaying?.item ?? null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Fout bij now playing');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section style={{ display: 'grid', gap: 20 }}>
       <div style={{ display: 'grid', gap: 10, maxWidth: 720 }}>
-        <label style={{ display: 'grid', gap: 6 }}>
-          <span>Access token</span>
-          <input
-            type="password"
-            value={accessToken}
-            onChange={(event) => setAccessToken(event.target.value)}
-            placeholder="Plak hier je access_token"
-            style={{ padding: 8 }}
-          />
-        </label>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a href="/spotify/api/auth/spotify/login">Login met Spotify</a>
+          <a href="/spotify/api/auth/spotify/logout">Logout</a>
+        </div>
         <label style={{ display: 'grid', gap: 6 }}>
           <span>User key</span>
           <input
@@ -123,8 +130,11 @@ export default function MvpClient() {
           />
         </label>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <button type="button" onClick={loadPlaylists} disabled={!accessToken || loading}>
+          <button type="button" onClick={loadPlaylists} disabled={loading}>
             Laad playlists
+          </button>
+          <button type="button" onClick={loadNowPlaying} disabled={loading}>
+            Now playing
           </button>
           <input
             value={searchQuery}
@@ -137,11 +147,20 @@ export default function MvpClient() {
             <option value="artist">Artists</option>
             <option value="playlist">Playlists</option>
           </select>
-          <button type="button" onClick={runSearch} disabled={!accessToken || loading}>
+          <button type="button" onClick={runSearch} disabled={loading}>
             Zoek
           </button>
         </div>
         {error ? <div style={{ color: '#b00020' }}>{error}</div> : null}
+      </div>
+
+      <div>
+        <h2 style={{ marginBottom: 8 }}>Now playing</h2>
+        <div style={{ padding: 6, opacity: nowPlaying ? 1 : 0.6 }}>
+          {nowPlaying
+            ? `${nowPlaying.name} — ${nowPlaying.artists?.map((artist) => artist.name).join(', ') ?? '-'}`
+            : 'Geen actieve track'}
+        </div>
       </div>
 
       <div>

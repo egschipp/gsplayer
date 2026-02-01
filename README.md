@@ -10,6 +10,8 @@ Stel de volgende secrets in bij **Settings → Secrets and variables → Actions
 
 - `SPOTIFY_CLIENT_ID`
 - `SPOTIFY_CLIENT_SECRET`
+- `SPOTIFY_REDIRECT_URI` (bijv. `https://www.schippers-online.nl/spotify/api/auth/spotify/callback`)
+- `APP_ENCRYPTION_KEY` (32 bytes base64, bv. output van `openssl rand -base64 32`)
 - `DEPLOY_HOST`
 - `DEPLOY_USER`
 - `DEPLOY_SSH_KEY` (private key zonder passphrase)
@@ -40,10 +42,11 @@ Optioneel (als je wilt overschrijven):
 - Build, lint, typecheck en build van de Next.js app.
 - Build van de Docker image en push naar GHCR.
 - Upload van `docker-compose.yml` naar de Pi.
-- Remote deploy via SSH: `docker login`, `docker compose pull`, `docker compose up -d`.
+- Remote deploy via SSH: `docker login`, `docker-compose pull`, `docker-compose up -d`.
 
+## OAuth redirect
 
-<!-- deploy test -->
+Zorg dat de Spotify app in de Developer Dashboard exact dezelfde redirect URI heeft als `SPOTIFY_REDIRECT_URI`.
 
 ## Conventional Commits (voor releases)
 

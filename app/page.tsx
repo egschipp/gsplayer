@@ -1,7 +1,8 @@
+import packageJson from '../package.json';
 import MvpClient from './ui/mvp-client';
 
 export default function HomePage() {
-  const version = process.env.NEXT_PUBLIC_APP_VERSION ?? 'dev';
+  const version = packageJson.version ?? 'dev';
 
   return (
     <main style={{ padding: 24, fontFamily: 'system-ui, sans-serif' }}>

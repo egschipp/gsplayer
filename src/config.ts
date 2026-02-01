@@ -17,6 +17,11 @@ export type CacheBackend = 'memory' | 'redis';
 
 export const config = {
   spotifyBaseUrl: 'https://api.spotify.com/v1',
+  spotifyAuth: {
+    clientId: env.SPOTIFY_CLIENT_ID || '',
+    clientSecret: env.SPOTIFY_CLIENT_SECRET || '',
+    redirectUri: env.SPOTIFY_REDIRECT_URI || '',
+  },
   timeouts: {
     requestMs: parseIntEnv(env.SPOTIFY_REQUEST_TIMEOUT_MS, 8000),
   },
@@ -59,6 +64,9 @@ export const config = {
   },
   metrics: {
     enabled: parseBoolEnv(env.METRICS_ENABLED, true),
+  },
+  security: {
+    encryptionKey: env.APP_ENCRYPTION_KEY || '',
   },
 };
 

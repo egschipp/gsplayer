@@ -70,3 +70,8 @@ export interface SearchResponse {
   albums?: Paging<SpotifyAlbum>;
   playlists?: Paging<SpotifyPlaylist>;
 }
+
+export interface NowPlayingResponse {
+  is_playing?: boolean;
+  item?: SpotifyTrack | null;
+}

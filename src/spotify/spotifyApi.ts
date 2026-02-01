@@ -4,6 +4,7 @@ import { buildCacheKey, withCache } from './cache';
 import { spotifyRequest, type RequestContext } from './spotifyClient';
 import type {
   Paging,
+  NowPlayingResponse,
   SearchResponse,
   SearchType,
   SpotifyPlaylist,
@@ -169,4 +170,15 @@ export const searchPaginated = async function* (
     yield page;
     if (totalFromPage === 0) break;
   }
+};
+
+export const getNowPlaying = async (accessToken: string, ctx: ApiContext): Promise<NowPlayingResponse | null> => {
+  return spotifyRequest<NowPlayingResponse | null>({
+    accessToken,
+    method: 'GET',
+    path: '/me/player/currently-playing',
+    ctx,
+    logger: ctx.logger,
+    metrics: ctx.metrics,
+  });
 };
