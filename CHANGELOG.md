@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/egschipp/gsplayer/compare/v1.3.0...v1.3.1) (2026-02-01)
+
+
+### Bug Fixes
+
+* quote APP_VERSION fallback ([3dd4847](https://github.com/egschipp/gsplayer/commit/3dd48473525b05978a4b0d1c5bac99d1b139fe1f))
+
 # [1.3.0](https://github.com/egschipp/gsplayer/compare/v1.2.3...v1.3.0) (2026-02-01)
 
 
