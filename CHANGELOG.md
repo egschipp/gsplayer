@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/egschipp/gsplayer/compare/v1.0.4...v1.1.0) (2026-02-01)
+
+
+### Features
+
+* add MVP UI for tracks artists playlists ([a346df9](https://github.com/egschipp/gsplayer/commit/a346df98cc98dc3d5134d6816391e857e7b7d924))
+
 ## [1.0.4](https://github.com/egschipp/gsplayer/compare/v1.0.3...v1.0.4) (2026-02-01)
 
 
