@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/egschipp/gsplayer/compare/v1.2.2...v1.2.3) (2026-02-01)
+
+
+### Bug Fixes
+
+* update lint config for eslint 9 ([1a65963](https://github.com/egschipp/gsplayer/commit/1a65963c9054ee232f2c3ec048c842dc952cf20a))
+
 ## [1.2.2](https://github.com/egschipp/gsplayer/compare/v1.2.1...v1.2.2) (2026-02-01)
 
 
