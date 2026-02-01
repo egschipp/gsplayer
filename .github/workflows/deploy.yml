@@ -35,9 +35,6 @@ jobs:
       - name: Test
         run: npm run test
 
-      - name: Build Next.js
-        run: npm run build
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -58,6 +55,8 @@ jobs:
           file: Dockerfile
           push: true
           platforms: linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: |
             ghcr.io/${{ github.repository_owner }}/gsplayer:latest
             ghcr.io/${{ github.repository_owner }}/gsplayer:${{ github.sha }}
