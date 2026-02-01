@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/egschipp/gsplayer/compare/v1.0.2...v1.0.3) (2026-02-01)
+
+
+### Bug Fixes
+
+* pass secrets to deploy step ([b4c063e](https://github.com/egschipp/gsplayer/commit/b4c063e49270cbb8dd8faec27627c5688a989ac9))
+
 ## [1.0.2](https://github.com/egschipp/gsplayer/compare/v1.0.1...v1.0.2) (2026-02-01)
 
 
