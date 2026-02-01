@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/egschipp/gsplayer/compare/v1.0.0...v1.0.1) (2026-02-01)
+
+
+### Bug Fixes
+
+* build without buildx on pi runner ([ee37c5a](https://github.com/egschipp/gsplayer/commit/ee37c5ad310e7bd7242f904ecf9efc52b7fa31bf))
+
 # 1.0.0 (2026-02-01)
 
 
