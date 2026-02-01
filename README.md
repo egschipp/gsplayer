@@ -42,3 +42,5 @@ Optioneel (als je wilt overschrijven):
 - Upload van `docker-compose.yml` naar de Pi.
 - Remote deploy via SSH: `docker login`, `docker compose pull`, `docker compose up -d`.
 
+
+<!-- deploy test -->
