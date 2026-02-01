@@ -20,11 +20,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
-
-      - name: Update npm
-        run: npm install -g npm@11.8.0
 
       - name: Install dependencies
         run: npm install
@@ -47,7 +44,8 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/gsplayer:latest -t ghcr.io/${{ github.repository_owner }}/gsplayer:${{ github.sha }} -f Dockerfile .
+          APP_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || node -p \"require('./package.json').version\")
+          docker build --build-arg NEXT_PUBLIC_APP_VERSION=$APP_VERSION -t ghcr.io/${{ github.repository_owner }}/gsplayer:latest -t ghcr.io/${{ github.repository_owner }}/gsplayer:${{ github.sha }} -f Dockerfile .
 
       - name: Push image
         run: |
