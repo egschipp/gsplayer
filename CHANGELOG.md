@@ -1,3 +1,10 @@
+## [1.3.14](https://github.com/egschipp/gsplayer/compare/v1.3.13...v1.3.14) (2026-02-02)
+
+
+### Bug Fixes
+
+* base path from runtime env + healthcheck ([077f910](https://github.com/egschipp/gsplayer/commit/077f9109455aa1fb0a93a1fb1bd33af6e464b8a3))
+
 ## [1.3.13](https://github.com/egschipp/gsplayer/compare/v1.3.12...v1.3.13) (2026-02-02)
 
 
