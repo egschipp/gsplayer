@@ -1,3 +1,10 @@
+## [1.3.12](https://github.com/egschipp/gsplayer/compare/v1.3.11...v1.3.12) (2026-02-02)
+
+
+### Bug Fixes
+
+* oauth base url + cookie scope ([39103c0](https://github.com/egschipp/gsplayer/commit/39103c06bf1ccea173e7d1e60a66e763144d9bdf))
+
 ## [1.3.11](https://github.com/egschipp/gsplayer/compare/v1.3.10...v1.3.11) (2026-02-02)
 
 
