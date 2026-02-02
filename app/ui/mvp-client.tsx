@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 type PlaylistItem = {
   id: string;
@@ -36,6 +36,10 @@ export default function MvpClient() {
   const [userKey, setUserKey] = useState('demo-user');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<{
+    app: { clientIdConfigured: boolean; clientSecretConfigured: boolean; redirectUriConfigured: boolean };
+    user: { loggedIn: boolean; expiresAt: number | null; expired: boolean | null };
+  } | null>(null);
 
   const [playlists, setPlaylists] = useState<PlaylistItem[]>([]);
   const [tracks, setTracks] = useState<TrackItem[]>([]);
@@ -49,6 +53,12 @@ export default function MvpClient() {
     () => ({ 'Content-Type': 'application/json' }),
     [],
   );
+
+  const loadStatus = async () => {
+    const response = await fetch('/api/auth/spotify/status', { method: 'GET' });
+    const body = await response.json();
+    setStatus(body);
+  };
 
   const callApi = async (payload: Record<string, unknown>) => {
     const response = await fetch('/api/spotify', {
@@ -113,13 +123,27 @@ export default function MvpClient() {
     }
   };
 
+  useEffect(() => {
+    loadStatus().catch(() => {});
+  }, []);
+
   return (
     <section style={{ display: 'grid', gap: 20 }}>
       <div style={{ display: 'grid', gap: 10, maxWidth: 720 }}>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <a href="/api/auth/spotify/login">Login met Spotify</a>
           <a href="/api/auth/spotify/logout">Logout</a>
+          <button type="button" onClick={loadStatus}>
+            Status check
+          </button>
         </div>
+        {status ? (
+          <div style={{ fontSize: 12, opacity: 0.8 }}>
+            App: clientId {status.app.clientIdConfigured ? 'ok' : 'missing'} • clientSecret{' '}
+            {status.app.clientSecretConfigured ? 'ok' : 'missing'} • redirectUri{' '}
+            {status.app.redirectUriConfigured ? 'ok' : 'missing'} | User: {status.user.loggedIn ? 'ingelogd' : 'uitgelogd'}
+          </div>
+        ) : null}
         <label style={{ display: 'grid', gap: 6 }}>
           <span>User key</span>
           <input

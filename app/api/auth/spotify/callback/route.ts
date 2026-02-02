@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { config } from '../../../../../src/config';
 import { exchangeCodeForToken } from '../../../../../src/spotify/auth';
 import { encryptToken, getSessionCookieName, getStateCookieName } from '../../../../../src/spotify/tokenStore';
 
@@ -15,7 +16,8 @@ const getBaseUrl = (request: Request) => {
   const forwardedHost = request.headers.get('x-forwarded-host');
   const host = forwardedHost ?? request.headers.get('host') ?? 'localhost:3000';
   const forwardedProto = request.headers.get('x-forwarded-proto') ?? 'https';
-  return `${forwardedProto}://${host}`;
+  const basePath = config.appBasePath || '';
+  return `${forwardedProto}://${host}${basePath}`;
 };
 
 export async function GET(request: Request) {

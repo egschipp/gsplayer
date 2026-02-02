@@ -22,6 +22,7 @@ export const config = {
     clientSecret: env.SPOTIFY_CLIENT_SECRET || '',
     redirectUri: env.SPOTIFY_REDIRECT_URI || '',
   },
+  appBasePath: env.APP_BASE_PATH || '/gsplayer',
   timeouts: {
     requestMs: parseIntEnv(env.SPOTIFY_REQUEST_TIMEOUT_MS, 8000),
   },
