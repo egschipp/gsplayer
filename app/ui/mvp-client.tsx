@@ -53,6 +53,7 @@ export default function MvpClient() {
     () => ({ 'Content-Type': 'application/json' }),
     [],
   );
+  const basePath = process.env.NEXT_PUBLIC_APP_BASE_PATH ?? '/gsplayer';
 
   const loadStatus = async () => {
     const response = await fetch('/api/auth/spotify/status', { method: 'GET' });
@@ -131,8 +132,8 @@ export default function MvpClient() {
     <section style={{ display: 'grid', gap: 20 }}>
       <div style={{ display: 'grid', gap: 10, maxWidth: 720 }}>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <a href="/api/auth/spotify/login">Login met Spotify</a>
-          <a href="/api/auth/spotify/logout">Logout</a>
+          <a href={`${basePath}/api/auth/spotify/login`}>Login met Spotify</a>
+          <a href={`${basePath}/api/auth/spotify/logout`}>Logout</a>
           <button type="button" onClick={loadStatus}>
             Status check
           </button>
