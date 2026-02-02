@@ -1,16 +1,9 @@
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import { config } from '../../../../../src/config';
 import { exchangeCodeForToken } from '../../../../../src/spotify/auth';
 import { encryptToken, getSessionCookieName, getStateCookieName } from '../../../../../src/spotify/tokenStore';
-
-const getCookieValue = (cookieHeader: string, name: string) => {
-  const entry = cookieHeader
-    .split(';')
-    .map((item) => item.trim())
-    .find((item) => item.startsWith(`${name}=`));
-  return entry ? entry.split('=')[1] : null;
-};
 
 const getBaseUrl = (request: Request) => {
   const forwardedHost = request.headers.get('x-forwarded-host');
@@ -30,8 +23,8 @@ export async function GET(request: Request) {
     return NextResponse.redirect(new URL('/?error=missing_code', baseUrl));
   }
 
-  const cookies = request.headers.get('cookie') ?? '';
-  const stateCookie = getCookieValue(cookies, getStateCookieName());
+  const cookieStore = await cookies();
+  const stateCookie = cookieStore.get(getStateCookieName())?.value ?? null;
 
   if (!stateCookie || !state || stateCookie !== state) {
     return NextResponse.redirect(new URL('/?error=state_mismatch', baseUrl));
@@ -51,10 +44,10 @@ export async function GET(request: Request) {
     httpOnly: true,
     sameSite: 'lax',
     secure: true,
-    path: '/',
+    path: config.appBasePath || '/',
     maxAge: 60 * 60 * 24 * 30,
   });
-  response.cookies.delete(getStateCookieName());
+  response.cookies.set(getStateCookieName(), '', { path: config.appBasePath || '/', maxAge: 0 });
 
   return response;
 }

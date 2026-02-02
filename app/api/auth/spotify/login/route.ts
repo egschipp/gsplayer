@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { config } from '../../../../../src/config';
 import { buildAuthorizeUrl } from '../../../../../src/spotify/auth';
 import { getStateCookieName } from '../../../../../src/spotify/tokenStore';
 
@@ -21,7 +22,7 @@ export async function GET() {
     httpOnly: true,
     sameSite: 'lax',
     secure: true,
-    path: '/',
+    path: config.appBasePath || '/',
     maxAge: 60 * 5,
   });
 

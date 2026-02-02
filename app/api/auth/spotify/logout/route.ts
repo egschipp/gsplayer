@@ -9,6 +9,6 @@ export async function GET(request: Request) {
   const forwardedProto = request.headers.get('x-forwarded-proto') ?? 'https';
   const baseUrl = `${forwardedProto}://${host}${config.appBasePath || ''}`;
   const response = NextResponse.redirect(new URL('/', baseUrl));
-  response.cookies.delete(getSessionCookieName());
+  response.cookies.set(getSessionCookieName(), '', { path: config.appBasePath || '/', maxAge: 0 });
   return response;
 }
