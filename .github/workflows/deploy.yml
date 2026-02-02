@@ -114,16 +114,7 @@ jobs:
               echo "APP_ENCRYPTION_KEY is ongeldig (voorbeeldtekst)"
               exit 1
             fi
-            KEY_LEN=$(python3 - <<'PY'
-import base64, os
-v = os.environ.get("APP_ENCRYPTION_KEY", "")
-try:
-    d = base64.b64decode(v, validate=True)
-    print(len(d))
-except Exception:
-    print(0)
-PY
-)
+            KEY_LEN=$(printf %s "${APP_ENCRYPTION_KEY}" | openssl base64 -d -A 2>/dev/null | wc -c | tr -d ' ')
             if [ "$KEY_LEN" != "32" ]; then
               echo "APP_ENCRYPTION_KEY moet 32 bytes base64 zijn"
               exit 1
