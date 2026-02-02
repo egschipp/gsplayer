@@ -1,15 +1,14 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-import { config } from '../../../../../src/config';
 import { exchangeCodeForToken } from '../../../../../src/spotify/auth';
 import { encryptToken, getSessionCookieName, getStateCookieName } from '../../../../../src/spotify/tokenStore';
 
 const getBaseUrl = (request: Request) => {
+  const basePath = process.env.APP_BASE_PATH || '/gsplayer';
   const forwardedHost = request.headers.get('x-forwarded-host');
   const host = forwardedHost ?? request.headers.get('host') ?? 'localhost:3000';
   const forwardedProto = request.headers.get('x-forwarded-proto') ?? 'https';
-  const basePath = config.appBasePath || '';
   return `${forwardedProto}://${host}${basePath}`;
 };
 
