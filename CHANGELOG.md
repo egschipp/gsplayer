@@ -1,3 +1,10 @@
+## [1.3.10](https://github.com/egschipp/gsplayer/compare/v1.3.9...v1.3.10) (2026-02-02)
+
+
+### Bug Fixes
+
+* use base path for auth links ([30a1e75](https://github.com/egschipp/gsplayer/commit/30a1e75af8b3f5ab67365039dbcde62d53b78b54))
+
 ## [1.3.9](https://github.com/egschipp/gsplayer/compare/v1.3.8...v1.3.9) (2026-02-02)
 
 
