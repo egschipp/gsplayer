@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/egschipp/gsplayer/compare/v1.3.6...v1.3.7) (2026-02-02)
+
+
+### Bug Fixes
+
+* robust encryption key validation ([83ac6b9](https://github.com/egschipp/gsplayer/commit/83ac6b9247517d1c42ca3a39f622292857ea38fe))
+
 ## [1.3.6](https://github.com/egschipp/gsplayer/compare/v1.3.5...v1.3.6) (2026-02-01)
 
 
