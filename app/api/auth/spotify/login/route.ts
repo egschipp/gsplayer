@@ -22,7 +22,8 @@ export async function GET() {
     httpOnly: true,
     sameSite: 'lax',
     secure: true,
-    path: config.appBasePath || '/',
+    // Gebruik root path zodat de callback altijd de state-cookie kan lezen.
+    path: '/',
     maxAge: 60 * 5,
   });
 

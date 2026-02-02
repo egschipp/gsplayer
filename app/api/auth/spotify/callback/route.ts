@@ -6,6 +6,13 @@ import { exchangeCodeForToken } from '../../../../../src/spotify/auth';
 import { encryptToken, getSessionCookieName, getStateCookieName } from '../../../../../src/spotify/tokenStore';
 
 const getBaseUrl = (request: Request) => {
+  // Prefer: afgeleid van de exacte redirect URI (meest betrouwbaar achter proxies).
+  if (config.spotifyAuth.redirectUri) {
+    const redirect = new URL(config.spotifyAuth.redirectUri);
+    const basePath = redirect.pathname.replace(/\/api\/auth\/spotify\/callback\/?$/, '');
+    return `${redirect.origin}${basePath}`;
+  }
+
   const forwardedHost = request.headers.get('x-forwarded-host');
   const host = forwardedHost ?? request.headers.get('host') ?? 'localhost:3000';
   const forwardedProto = request.headers.get('x-forwarded-proto') ?? 'https';
@@ -44,10 +51,10 @@ export async function GET(request: Request) {
     httpOnly: true,
     sameSite: 'lax',
     secure: true,
-    path: config.appBasePath || '/',
+    path: '/',
     maxAge: 60 * 60 * 24 * 30,
   });
-  response.cookies.set(getStateCookieName(), '', { path: config.appBasePath || '/', maxAge: 0 });
+  response.cookies.set(getStateCookieName(), '', { path: '/', maxAge: 0 });
 
   return response;
 }

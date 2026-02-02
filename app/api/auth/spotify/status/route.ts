@@ -19,6 +19,7 @@ export async function GET(request: Request) {
       clientIdConfigured: Boolean(config.spotifyAuth.clientId),
       clientSecretConfigured: Boolean(config.spotifyAuth.clientSecret),
       redirectUriConfigured: Boolean(config.spotifyAuth.redirectUri),
+      basePath: config.appBasePath || '',
     },
     user: {
       loggedIn: Boolean(session && session.accessToken),
