@@ -1,3 +1,10 @@
+## [1.3.11](https://github.com/egschipp/gsplayer/compare/v1.3.10...v1.3.11) (2026-02-02)
+
+
+### Bug Fixes
+
+* cookie handling for spotify auth ([6955ade](https://github.com/egschipp/gsplayer/commit/6955ade3ed4919357d0c3e8d64d575b7895131f7))
+
 ## [1.3.10](https://github.com/egschipp/gsplayer/compare/v1.3.9...v1.3.10) (2026-02-02)
 
 
