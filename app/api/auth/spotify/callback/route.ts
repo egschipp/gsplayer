@@ -6,13 +6,6 @@ import { exchangeCodeForToken } from '../../../../../src/spotify/auth';
 import { encryptToken, getSessionCookieName, getStateCookieName } from '../../../../../src/spotify/tokenStore';
 
 const getBaseUrl = (request: Request) => {
-  // Prefer: afgeleid van de exacte redirect URI (meest betrouwbaar achter proxies).
-  if (config.spotifyAuth.redirectUri) {
-    const redirect = new URL(config.spotifyAuth.redirectUri);
-    const basePath = redirect.pathname.replace(/\/api\/auth\/spotify\/callback\/?$/, '');
-    return `${redirect.origin}${basePath}`;
-  }
-
   const forwardedHost = request.headers.get('x-forwarded-host');
   const host = forwardedHost ?? request.headers.get('host') ?? 'localhost:3000';
   const forwardedProto = request.headers.get('x-forwarded-proto') ?? 'https';
