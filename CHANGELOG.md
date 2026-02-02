@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/egschipp/gsplayer/compare/v1.3.8...v1.3.9) (2026-02-02)
+
+
+### Bug Fixes
+
+* redirect to base path and add auth status ([a602e00](https://github.com/egschipp/gsplayer/commit/a602e0075ab10c4d4845dfc68d197ed953c8eba6))
+
 ## [1.3.8](https://github.com/egschipp/gsplayer/compare/v1.3.7...v1.3.8) (2026-02-02)
 
 
