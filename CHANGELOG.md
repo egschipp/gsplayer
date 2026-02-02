@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/egschipp/gsplayer/compare/v1.3.7...v1.3.8) (2026-02-02)
+
+
+### Bug Fixes
+
+* key validation without heredoc ([b664168](https://github.com/egschipp/gsplayer/commit/b664168e632989ef484bd63a198b543fd6bf806f))
+
 ## [1.3.7](https://github.com/egschipp/gsplayer/compare/v1.3.6...v1.3.7) (2026-02-02)
 
 
