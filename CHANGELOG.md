@@ -1,3 +1,10 @@
+## [1.3.13](https://github.com/egschipp/gsplayer/compare/v1.3.12...v1.3.13) (2026-02-02)
+
+
+### Bug Fixes
+
+* redirect base url uses app base path ([09eefb7](https://github.com/egschipp/gsplayer/commit/09eefb776efd7cd360321e72e74de44c01ab65a3))
+
 ## [1.3.12](https://github.com/egschipp/gsplayer/compare/v1.3.11...v1.3.12) (2026-02-02)
 
 
